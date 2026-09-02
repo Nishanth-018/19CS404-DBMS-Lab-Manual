@@ -1,5 +1,6 @@
-# Experiment 2: DDL Commands
-
+# EXPERIMENT 2: DDL Commands
+## NAME : NISHANTH J
+## REGISTRATION  NUMBER : 212223100040
 ## AIM
 To study and implement DDL commands and different types of constraints.
 
@@ -104,125 +105,251 @@ CREATE TABLE Table_Name (
 ```
 
 **Question 1**
---
--- Paste Question 1 here
+---
+Insert the below data into the Books table, allowing the Publisher and Year columns to take their default values.
 
+ISBN             Title                 Author
+---------------  --------------------  ---------------
+978-6655443321   Big Data Analytics    Karen Adams
+
+Note: The Publisher and Year columns will use their default values.
 ```sql
--- Paste your SQL code below for Question 1
+INSERT INTO Books(ISBN,Title,Author)
+VALUES('978-6655443321','Big Data Analytics','Karen Adams');
 ```
 
 **Output:**
 
-![Output1](output.png)
+<img width="1288" height="885" alt="image" src="https://github.com/user-attachments/assets/30df37fb-49a4-4842-a7da-43c804e057e5" />
+
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+Write a SQL Query  to add attribute ISBN as varchar(30) and domain_dept as varchar(30) in the table 'books'
+For example:
+
+Test	Result
+pragma table_info('books');
+cid         name        type        notnull     dflt_value  pk
+----------  ----------  ----------  ----------  ----------  ----------
+0           book_id     INT         0                       1
+1           title       VARCHAR(15  0                       0
+2           author      VARCHAR(10  0                       0
+3           genre       VARCHAR(50  0                       0
+4           publicatio  INT         0                       0
+5           ISBN        varchar(30  0                       0
+6           domain_dep  varchar(30  0                       0
 
 ```sql
--- Paste your SQL code below for Question 2
+ALTER TABLE books
+ADD  ISBN varchar(30) ;
+ALTER TABLE books
+ADD domain_dept  varchar(30);
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="1294" height="909" alt="image" src="https://github.com/user-attachments/assets/3d65bd4e-4651-4a32-afbd-673a3b95b49a" />
+
+
 
 **Question 3**
 ---
--- Paste Question 3 here
+Create a table named Locations with the following columns:
+
+LocationID as INTEGER
+LocationName as TEXT
+Address as TEXT
+For example:
+
+Test	Result
+pragma table_info('Locations');
+cid       name             type        notnull     dflt_value  pk
+--------  ---------------  ----------  ----------  ----------  ----------
+0         LocationID       INTEGER     0                       0
+1         LocationName     TEXT        0                       0
+2         Address          TEXT        0                       0
 
 ```sql
--- Paste your SQL code below for Question 3
+CREATE TABLE Locations(
+LocationID INTEGER,
+LocationName TEXT,
+Address TEXT);
 ```
 
 **Output:**
 
-![Output3](output.png)
+<img width="1308" height="887" alt="image" src="https://github.com/user-attachments/assets/29c3121e-80cd-4995-b831-b01e2780cec3" />
+
 
 **Question 4**
 ---
--- Paste Question 4 here
+Create a table named Bonuses with the following constraints:
+BonusID as INTEGER should be the primary key.
+EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
+BonusAmount as REAL should be greater than 0.
+BonusDate as DATE.
+Reason as TEXT should not be NULL.
+For example:
+
+Test	Result
+INSERT INTO Bonuses (BonusID, EmployeeID, BonusAmount, BonusDate, Reason) VALUES (1, 6, 1000.0, '2024-08-01', 'Outstanding performance');
+SELECT * FROM Bonuses;
+BonusID     EmployeeID  BonusAmount  BonusDate   Reason
+----------  ----------  -----------  ----------  -----------------------
+1           6           1000.0       2024-08-01  Outstanding performance
 
 ```sql
--- Paste your SQL code below for Question 4
+CREATE TABLE Bonuses(
+BonusID INTEGER PRIMARY KEY,
+EmployeeID INTEGER,
+BonusAmount REAL  CHECK(BonusAmount>0),
+BonusDate DATE,
+Reason TEXT NOT NULL
+);
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="1298" height="920" alt="image" src="https://github.com/user-attachments/assets/49e4be8b-a2be-4c28-8458-a95bae066e70" />
+
 
 **Question 5**
 ---
--- Paste Question 5 here
+Create a new table named products with the following specifications:
+product_id as INTEGER and primary key.
+product_name as TEXT and not NULL.
+list_price as DECIMAL (10, 2) and not NULL.
+discount as DECIMAL (10, 2) with a default value of 0 and not NULL.
+A CHECK constraint at the table level to ensure:
+list_price is greater than or equal to discount
+discount is greater than or equal to 0
+list_price is greater than or equal to 0
+For example:
 
+Test	Result
+INSERT INTO products (product_id, product_name, list_price) VALUES (2, 'Product B', 50.00);
+SELECT * FROM products;
+product_id  product_name  list_price  discount
+----------  ------------  ----------  ----------
+2           Product B     50          0
 ```sql
--- Paste your SQL code below for Question 5
+CREATE TABLE products(
+product_id INTEGER PRIMARY KEY,
+product_name TEXT NOT NULL,
+list_price DECIMAL(10,2) NOT NULL CHECK((list_price>=discount) and (list_price>=0)),
+discount DECIMAL(10,2) DEFAULT 0 NOT NULL CHECK(discount>=0));
 ```
 
 **Output:**
 
-![Output5](output.png)
+<img width="1329" height="855" alt="image" src="https://github.com/user-attachments/assets/686e759d-f42c-43d4-820f-d6f09675f9a0" />
+
 
 **Question 6**
 ---
--- Paste Question 6 here
+Write an SQL query to add a new column email of type TEXT to the Student_details table, and ensure that this column cannot contain NULL values and make default value as 'Invalid'
+For example:
+
+Test	Result
+INSERT INTO Student_details (RollNo, Name, Gender, Subject, email) 
+VALUES (1, 'John Doe', 'M', 'Math', 'john@example.com');
+select * from Student_details;
+RollN  Name   Gen  Subject     email
+-----  -----  ---  ----------  ----------------
+1      John   M    Math        john@example.com
 
 ```sql
--- Paste your SQL code below for Question 6
+ALTER TABLE Student_details
+ADD email TEXT NOT NULL DEFAULT 'Invalid';
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="1265" height="824" alt="image" src="https://github.com/user-attachments/assets/4c0dd3e5-95ed-4961-b95b-880bd24fe06c" />
+
 
 **Question 7**
 ---
--- Paste Question 7 here
+Insert a new product with ProductID 101, Name Laptop, Category Electronics, Price 1500, and Stock 50 into the Products table.
 
+For example:
+
+Test	Result
+SELECT * FROM Products WHERE ProductID = 101;
+ProductID   Name        Category     Price       Stock
+----------  ----------  -----------  ----------  ----------
+101         Laptop      Electronics  1500        50
 ```sql
--- Paste your SQL code below for Question 7
+INSERT INTO Products(ProductID,Name,Category,Price,Stock)VALUES(101,'Laptop','Electronics','1500','50');
 ```
 
 **Output:**
 
-![Output7](output.png)
+<img width="1295" height="817" alt="image" src="https://github.com/user-attachments/assets/e67f28cb-7b4c-41a3-b67d-6a84c06528bc" />
+
 
 **Question 8**
 ---
--- Paste Question 8 here
+Insert the below data into the Employee table, allowing the Department and Salary columns to take their default values.
+
+EmployeeID  Name         Position
+----------  -----------  ----------
+4           Emily White  Analyst
+
+Note: The Department and Salary columns will use their default values.
 
 ```sql
--- Paste your SQL code below for Question 8
+insert into Employee(EmployeeID,Name,Position)
+values(4,"Emily White","Analyst");
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="1000" height="800" alt="Screenshot 2026-02-02 133335" src="https://github.com/user-attachments/assets/f38ab02a-cca3-4d70-8a78-1b6683cf4afb" />
+
 
 **Question 9**
 ---
--- Paste Question 9 here
+Create a table named Invoices with the following constraints:
+InvoiceID as INTEGER should be the primary key.
+InvoiceDate as DATE.
+Amount as REAL should be greater than 0.
+DueDate as DATE should be greater than the InvoiceDate.
+OrderID as INTEGER should be a foreign key referencing Orders(OrderID).
 
 ```sql
--- Paste your SQL code below for Question 9
+create table Invoices(
+InvoiceID integer primary key,
+InvoiceDate fate,
+Amount real check(Amount>0),
+DueDate date check(DueDate>InvoiceDate),
+OrderID integer,
+foreign key (OrderID) references Orders(OrderID));
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="1000" height="800" alt="Screenshot 2026-02-02 133352" src="https://github.com/user-attachments/assets/07bd96b8-74af-472d-a046-d4f116892683" />
+
 
 **Question 10**
 ---
--- Paste Question 10 here
+Insert all books from Out_of_print_books into Books
+
+Table attributes are ISBN, Title, Author, Publisher, YearPublished
 
 ```sql
--- Paste your SQL code below for Question 10
+insert into Books select * from Out_of_print_books
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="1000" height="800" alt="Screenshot 2026-02-02 133405" src="https://github.com/user-attachments/assets/ae821cc6-4f05-4959-98a2-9025fca057c6" />
+
 
 
 ## RESULT
 Thus, the SQL queries to implement different types of constraints and DDL commands have been executed successfully.
+
