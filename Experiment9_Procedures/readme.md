@@ -4,7 +4,7 @@ To understand and implement procedures and functions in PL/SQL for performing va
 
 ---
 
-## THEORY
+## THEORY.
 
 PL/SQL (Procedural Language/SQL) extends SQL by adding procedural constructs like variables, conditions, loops, procedures, and functions. Procedures and functions are subprograms that help modularize the code and improve reusability.
 
